@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-NflDraft::Application.config.secret_token = '7727510e35dcac8a76c2a793ca32aacb6549e14e2a8e09c4a757fb851353e950ced323a5f491fb83cc7c6fb89374b187adc9d0af85017b4d227c24ebd58e6b3f'
+NflDraft::Application.config.secret_token = '4f894ff1aaa48931e371032734622d93ff9084bef21039dc74cc44e1c0532fb06645faab2453626df566848ccd5b933d445f2177aa673e5852037af8e0714282'
