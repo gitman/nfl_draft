@@ -1,3 +1,3 @@
 class Player < ActiveRecord::Base
-  # attr_accessible :name, :position
+   attr_accessible :name, :position
 end
