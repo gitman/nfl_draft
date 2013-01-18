@@ -51,4 +51,5 @@ gem "better_errors", ">= 0.3.2", :group => :development
 gem "binding_of_caller", ">= 0.6.8", :group => :development
 gem "hub", ">= 1.10.2", :require => nil, :group => [:development]
 
-gem "fastercsv", "~> 1.5.5"
+# rake task command-line interface
+gem "highline", "~> 1.6.15"
