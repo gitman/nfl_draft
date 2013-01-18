@@ -39,4 +39,9 @@ namespace :data do
       Order.new(:round => row['Round'].strip, :pick => row['Pick'].strip, :team_id => Team.find_by_name(team_name).id).save!
     end
   end
+
+  desc 'Simulate the draft process'
+  task :simulate_draft_process => [:environment] do
+
+  end
 end
