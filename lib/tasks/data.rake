@@ -34,7 +34,9 @@ namespace :data do
   desc 'Loading order'
   task :load_orders => [:environment] do
     CSV.foreach('db/order.csv', :headers => true) do |row|
-      Order.new(:round => row['Round'].strip, :pick => row['Pick'].strip, :team_id => nil).save!
+      team_name = row["Team Name"].strip
+      team_name.gsub!(/(NY)/, "New York") if team_name.match(/(NY)/)
+      Order.new(:round => row['Round'].strip, :pick => row['Pick'].strip, :team_id => Team.find_by_name(team_name).id).save!
     end
   end
 end
