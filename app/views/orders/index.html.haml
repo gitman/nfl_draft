@@ -1,2 +1,19 @@
-%h1 Orders#index
-%p Find me in app/views/orders/index.html.haml
+%h1 Latest Picks
+%table.table.table-striped
+  %tr
+    %th Player
+    %th Team
+  - @players.each do |player|
+    = content_tag_for(:tr, player) do
+      %td
+        = player.name
+      %td
+        = player.team.name
+#next_order
+  .page-header
+    %h2 Next Team to Pick
+  - if !@order
+    .alert.alert-info
+      The draft is complete! There are no more selections.
+  - else
+    %h3= @order.team.name

@@ -5,4 +5,8 @@ class Player < ActiveRecord::Base
 
   has_one :ownership
   has_one :team, :through => :ownership
+
+  def self.last_three_picks
+    where('id in (?)', Ownership.all.map(&:player_id)).limit(3).order('created_at DESC')
+  end
 end
