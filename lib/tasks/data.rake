@@ -42,6 +42,33 @@ namespace :data do
 
   desc 'Simulate the draft process'
   task :simulate_draft_process => [:environment] do
+    limits = offsets = Array.new(7) { 0 }
 
+    for round in 1..7
+      this_round_teams = Order.where(:round => round)
+      offset = limits.inject(0){|sum,item|sum + item}
+      puts "Offset ---> #{offset}"
+      limits[round - 1] = this_round_teams.count
+      if round == 0
+        offsets[0] = 0
+      elsif round > 1
+        offsets[round -1] = offset
+        puts " OFFSET: #{offsets[round -1]}"
+      end
+
+      players = Player.limit(limits[round-1]).offset(offsets[round-1])
+
+      count = 0
+      (1..limits[round - 1]).each do |i|
+        count = count+1
+        puts" ROUND & PICK : round : #{round}, i #{i}: "
+        order_team = this_round_teams[i - 1].team
+        puts"Team that has a chance to pick now :#{order_team.name}"
+        player_picked = players[i - 1]
+        puts" Player picked in round: #{round}, pick : #{i} is #{player_picked.name}"
+        order_team.acquire(player_picked)
+      end
+    end
   end
+
 end

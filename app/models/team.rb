@@ -6,4 +6,8 @@ class Team < ActiveRecord::Base
   has_many :ownerships
   has_many :players, :through => :ownerships
   has_many :orders
+
+  def acquire(player)
+    players << player
+  end
 end
