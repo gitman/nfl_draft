@@ -1,0 +1,16 @@
+%h1 Draftable Players
+- if @players.empty?
+  .alert.alert-info
+    There aren't any remaining draftable players
+- else
+  - @players.each_key do |position|
+    = content_tag :div, :id => "#{position}" do
+      = content_tag :h2 do
+        = "#{position}"
+      %table.table.table-striped
+        %tr
+          %th
+            Player
+        - @players[position].each do |player|
+          = content_tag_for(:tr, player) do
+            %td= player.name
