@@ -1,0 +1,46 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}
+      %meta{:content => "IE=Edge,chrome=1", "http-equiv" => "X-UA-Compatible"}
+        %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+          %title= content_for?(:title) ? yield(:title) : "BradleyNfldraft"
+          = csrf_meta_tags
+          = stylesheet_link_tag "application", :media => "all"
+          = favicon_link_tag 'images/favicon.ico', :rel => 'shortcut icon'
+  %body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          = link_to "NFL Draft", root_path, :class => "brand"
+          .container.nav-collapse
+            %ul.nav
+              %li= link_to "Undrafted Players", undrafted_players_path
+            %ul.nav.pull-right
+              %li
+                -# = link_to "Draft", new_ownership_path
+          / /.nav-collapse
+    .container
+      - flash.each do |name, msg|
+        #alerts{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
+          %a.close{"data-dismiss" => "alert", :href => "#"} ×
+          = msg
+      .row
+        .span12
+          = yield
+      / /row
+      %footer
+        %p
+          © tryambake.com
+          = Time.now.year
+    / /container
+    /
+      Javascripts
+      \==================================================
+    / Placed at the end of the document so the pages load faster
+    = javascript_include_tag "application"
+

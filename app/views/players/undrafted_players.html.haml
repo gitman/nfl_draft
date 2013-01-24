@@ -1,7 +1,7 @@
-%h1 Draftable Players
+%h1 Undrafted Players
 - if @players.empty?
   .alert.alert-info
-    There aren't any remaining draftable players
+    No remaining draftable players
 - else
   - @players.each_key do |position|
     = content_tag :div, :id => "#{position}" do
